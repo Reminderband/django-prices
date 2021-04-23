@@ -27,7 +27,7 @@ class PriceInput(forms.TextInput):
                 initial = initial.net
             return super(PriceInput, self)._has_changed(initial, data)
 
-    def render(self, name, value, attrs=None):
+    def render(self, name, value, attrs=None, renderer=None):
         widget = super(PriceInput, self).render(name, value, attrs=attrs)
         return render_to_string(self.template, {'widget': widget,
                                                 'value': value,
