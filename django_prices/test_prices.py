@@ -76,13 +76,13 @@ def test_value_to_string(test_model):
 def test_from_db_value():
     field = PriceField('price', currency='BTC', default='5', max_digits=9,
                        decimal_places=2)
-    assert field.from_db_value(7, None, None, None) == Price(7, currency='BTC')
+    assert field.from_db_value(7, None, None) == Price(7, currency='BTC')
 
 
 def test_from_db_value_handles_none():
     field = PriceField('price', currency='BTC', default='5', max_digits=9,
                        decimal_places=2)
-    assert field.from_db_value(None, None, None, None) is None
+    assert field.from_db_value(None, None, None) is None
 
 
 def test_from_db_value_checks_currency():
@@ -90,7 +90,7 @@ def test_from_db_value_checks_currency():
                        decimal_places=2)
     invalid = Price(1, currency='USD')
     with pytest.raises(ValueError):
-        field.from_db_value(invalid, None, None, None)
+        field.from_db_value(invalid, None, None)
 
 
 def test_formfield():
